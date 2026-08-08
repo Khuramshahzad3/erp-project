@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import mongoose from 'mongoose';
 import { globalLimiter } from './middleware/rateLimit.middleware';
 import { errorHandler } from './middleware/error.middleware';
 
@@ -36,10 +37,22 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
-  console.log(`📡 Root API ping received from IP: ${req.ip} at ${new Date().toISOString()}`);
+  const dbStatus = mongoose.connection.readyState as 0 | 1 | 2 | 3;
+  const statusMap = {
+    0: 'disconnected',
+    1: 'connected',
+    2: 'connecting',
+    3: 'disconnecting',
+  };
+  
   res.status(200).json({
     success: true,
     message: 'Welcome to ERP Sales & Customer Management System REST API',
+    apiStatus: 'online',
+    databaseConnection: statusMap[dbStatus] || 'unknown',
+    environment: process.env.VERCEL ? 'vercel-serverless' : 'local-development',
+    timestamp: new Date().toISOString(),
+    clientIp: req.ip,
   });
 });
 
