@@ -12,7 +12,7 @@ const seedDatabase = async () => {
     await mongoose.connect(env.MONGODB_URI);
     console.log('📡 Connected to MongoDB');
 
-    // Clean existing database collections
+    
     await User.deleteMany({});
     await Customer.deleteMany({});
     await Product.deleteMany({});
@@ -20,12 +20,12 @@ const seedDatabase = async () => {
     await AuditLog.deleteMany({});
     console.log('🧹 Cleaned existing database collections');
 
-    // 1. Seed Users
+    
     const users = await User.create([
       {
         name: 'System Admin',
         email: 'admin@erp.com',
-        password: 'admin123', // Raw password will be hashed by pre-save hook
+        password: 'admin123', 
         role: 'Admin',
         isActive: true,
       },
@@ -50,7 +50,7 @@ const seedDatabase = async () => {
     const manager = users[1];
     const rep = users[2];
 
-    // 2. Seed Customers
+    
     const customersData = [
       { name: 'Alice Smith', email: 'alice@smithcorp.com', phone: '555-0101', company: 'Smith Corp', address: '123 Pine St', city: 'New York', country: 'USA', status: 'Active' },
       { name: 'Bob Johnson', email: 'bob@globex.com', phone: '555-0102', company: 'Globex Industries', address: '456 Elm St', city: 'Los Angeles', country: 'USA', status: 'Active' },
@@ -66,16 +66,16 @@ const seedDatabase = async () => {
     const customers = await Customer.create(customersData as any[]);
     console.log(`✅ Seeded ${customers.length} customers`);
 
-    // 3. Seed Products
+    
     const productsData = [
       { name: 'ThinkPad X1 Carbon', sku: 'LAP-TPX1', description: 'Premium business laptop with carbon fiber chassis', category: 'Laptops', price: 1499, stock: 25, lowStockThreshold: 5, status: 'Active' },
       { name: 'MacBook Pro 16"', sku: 'LAP-MBP16', description: 'Apple M3 Max chip with 32GB unified memory', category: 'Laptops', price: 2499, stock: 12, lowStockThreshold: 3, status: 'Active' },
       { name: 'Dell UltraSharp 32"', sku: 'MON-DELL32', description: '4K IPS professional monitor', category: 'Monitors', price: 699, stock: 8, lowStockThreshold: 4, status: 'Active' },
       { name: 'Keychron Q1 Max', sku: 'KEY-KCQ1M', description: 'Wireless mechanical keyboard', category: 'Keyboards', price: 189, stock: 40, lowStockThreshold: 10, status: 'Active' },
-      { name: 'Logitech MX Master 3S', sku: 'MOU-MXM3S', description: 'Ergonomic office mouse', category: 'Mice', price: 99, stock: 3, lowStockThreshold: 5, status: 'Active' }, // Low stock initial state
+      { name: 'Logitech MX Master 3S', sku: 'MOU-MXM3S', description: 'Ergonomic office mouse', category: 'Mice', price: 99, stock: 3, lowStockThreshold: 5, status: 'Active' }, 
       { name: 'Cisco Catalyst Switch', sku: 'NET-CISCO24', description: '24-port Gigabit Ethernet switch', category: 'Networking', price: 499, stock: 15, lowStockThreshold: 2, status: 'Active' },
       { name: 'Ubiquiti UniFi AP', sku: 'NET-UBAP', description: 'Enterprise wireless access point', category: 'Networking', price: 179, stock: 30, lowStockThreshold: 5, status: 'Active' },
-      { name: 'Synology NAS 4-Bay', sku: 'STG-SYNAS4', description: 'Network attached storage server', category: 'Storage', price: 549, stock: 2, lowStockThreshold: 3, status: 'Active' }, // Low stock initial state
+      { name: 'Synology NAS 4-Bay', sku: 'STG-SYNAS4', description: 'Network attached storage server', category: 'Storage', price: 549, stock: 2, lowStockThreshold: 3, status: 'Active' }, 
       { name: 'Samsung T7 Shield 2TB', sku: 'STG-SSD2TB', description: 'Rugged portable SSD drive', category: 'Storage', price: 159, stock: 50, lowStockThreshold: 8, status: 'Active' },
       { name: 'Epson EcoTank Pro', sku: 'PRN-EPSON', description: 'All-in-one cartridge-free ink printer', category: 'Printers', price: 399, stock: 6, lowStockThreshold: 2, status: 'Active' },
       { name: 'Sony WH-1000XM5', sku: 'AUD-SONY5', description: 'Wireless noise-canceling headphones', category: 'Audio', price: 399, stock: 18, lowStockThreshold: 4, status: 'Active' },
@@ -87,12 +87,12 @@ const seedDatabase = async () => {
     const products = await Product.create(productsData as any[]);
     console.log(`✅ Seeded ${products.length} products`);
 
-    // Helper functions to get random products and quantities
+    
     const getRandomProduct = () => products[Math.floor(Math.random() * products.length)] as any;
     const getRandomCustomer = () => customers[Math.floor(Math.random() * customers.length)] as any;
     const getRandomUser = () => users[Math.floor(Math.random() * users.length)] as any;
 
-    // 4. Seed 20 Sales Orders
+    
     const ordersData: any[] = [];
     const orderStatuses: ('Pending' | 'Confirmed' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled')[] = [
       'Delivered', 'Delivered', 'Delivered', 'Delivered', 'Delivered',
@@ -109,7 +109,7 @@ const seedDatabase = async () => {
       const creator = getRandomUser();
       const status = orderStatuses[i % orderStatuses.length];
 
-      // Pick 1-3 random products
+      
       const itemCount = Math.floor(Math.random() * 3) + 1;
       const orderItems = [];
       const selectedProductIds = new Set();
@@ -133,16 +133,16 @@ const seedDatabase = async () => {
           total,
         });
 
-        // Decrement stock for confirmed/delivered/processing/shipped orders
+        
         if (status !== 'Pending' && status !== 'Cancelled') {
           product.stock = Math.max(0, product.stock - qty);
           await product.save();
         }
       }
 
-      const taxRate = 0.1; // 10% tax
+      const taxRate = 0.1; 
       const tax = Math.round(subtotal * taxRate * 100) / 100;
-      const discount = i % 5 === 0 ? 20 : 0; // $20 discount every 5th order
+      const discount = i % 5 === 0 ? 20 : 0; 
       const finalTotal = subtotal + tax - discount;
 
       ordersData.push({
@@ -156,14 +156,14 @@ const seedDatabase = async () => {
         status,
         createdBy: creator._id,
         notes: `Order created by seed script. Status: ${status}`,
-        createdAt: new Date(Date.now() - (20 - i) * 24 * 60 * 60 * 1000), // Spaced out dates
+        createdAt: new Date(Date.now() - (20 - i) * 24 * 60 * 60 * 1000), 
       });
     }
 
     const orders = await SalesOrder.create(ordersData as any[]);
     console.log(`✅ Seeded ${orders.length} sales orders`);
 
-    // 5. Seed some Audit Logs
+    
     const auditLogsData = [
       { user: admin._id, action: 'User Creation', entity: 'User', description: 'Seeded system administrator, manager and rep accounts', timestamp: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
       { user: manager._id, action: 'Product Import', entity: 'Product', description: 'Imported initial products list into inventory catalog', timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },

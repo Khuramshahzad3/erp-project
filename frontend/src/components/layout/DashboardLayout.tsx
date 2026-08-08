@@ -52,7 +52,7 @@ export const DashboardLayout: React.FC = () => {
     },
   ];
 
-  // Filter menu items by user role
+  
   const allowedMenuItems = menuItems.filter((item) =>
     hasRole(item.roles as any)
   );
@@ -64,7 +64,7 @@ export const DashboardLayout: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-50/50 text-gray-900 overflow-hidden">
-      {/* Mobile Sidebar overlay backdrop */}
+      {}
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
@@ -72,13 +72,13 @@ export const DashboardLayout: React.FC = () => {
         />
       )}
 
-      {/* Sidebar (Desktop and Mobile) */}
+      {}
       <aside
         className={`fixed inset-y-0 left-0 z-30 flex w-64 flex-col bg-white border-r border-gray-100 transition-transform duration-300 lg:static lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Brand / Logo */}
+        {}
         <div className="flex h-16 items-center justify-between px-6 border-b border-gray-100 bg-gray-50/10">
           <Link to="/dashboard" className="flex items-center gap-2">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white font-bold shadow-sm shadow-blue-500/20">
@@ -96,7 +96,7 @@ export const DashboardLayout: React.FC = () => {
           </button>
         </div>
 
-        {/* Navigation Links */}
+        {}
         <nav className="flex-1 space-y-1 px-4 py-6 overflow-y-auto">
           {allowedMenuItems.map((item) => {
             const isActive = location.pathname === item.path || location.pathname.startsWith(`${item.path}/`);
@@ -119,7 +119,7 @@ export const DashboardLayout: React.FC = () => {
           })}
         </nav>
 
-        {/* User Footer Profile & Logout */}
+        {}
         <div className="border-t border-gray-100 p-4 bg-gray-50/10">
           <div className="flex items-center gap-3 px-2 py-1.5 mb-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 text-blue-600 border border-blue-100">
@@ -144,9 +144,9 @@ export const DashboardLayout: React.FC = () => {
         </div>
       </aside>
 
-      {/* Main Content Area */}
+      {}
       <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Top Header navbar */}
+        {}
         <header className="flex h-16 items-center justify-between border-b border-gray-100 bg-white px-6">
           <div className="flex items-center gap-4">
             <button
@@ -169,7 +169,7 @@ export const DashboardLayout: React.FC = () => {
           </div>
         </header>
 
-        {/* Content Outlet */}
+        {}
         <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-gray-50/20">
           <Outlet />
         </main>

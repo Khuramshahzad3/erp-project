@@ -27,13 +27,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setToken(storedToken);
         setUser(JSON.parse(storedUser));
         
-        // Optionally verify session on boot
+        
         try {
           const res = await authService.me();
           setUser(res.data);
           localStorage.setItem('erp_user', JSON.stringify(res.data));
         } catch (error) {
-          // Token is invalid/expired (handled by axios interceptor too)
+          
           handleLogoutLocal();
         }
       }

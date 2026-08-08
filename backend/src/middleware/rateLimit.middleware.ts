@@ -1,8 +1,8 @@
 import rateLimit from 'express-rate-limit';
 
 export const globalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 300, // Limit each IP to 300 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 300, 
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -15,8 +15,8 @@ export const globalLimiter = rateLimit({
 });
 
 export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 30, // Limit each IP to 30 requests per windowMs for auth routes
+  windowMs: 15 * 60 * 1000, 
+  max: 30, 
   standardHeaders: true,
   legacyHeaders: false,
   message: {

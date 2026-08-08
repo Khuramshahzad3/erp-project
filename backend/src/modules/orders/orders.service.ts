@@ -32,12 +32,12 @@ export class OrdersService {
       filter.customer = customerId;
     }
 
-    // If search is provided, we must check orderNumber or search customer names
+    
     if (search) {
       if (search.startsWith('SO-')) {
         filter.orderNumber = { $regex: search, $options: 'i' };
       } else {
-        // Search customer names first
+        
         const matchingCustomers = await Customer.find({
           name: { $regex: search, $options: 'i' },
         }).select('_id');
@@ -90,7 +90,7 @@ export class OrdersService {
     try {
       const { customer: customerId, items, discount, notes } = data;
 
-      // Validate customer
+      
       const customer = await Customer.findById(customerId).session(session);
       if (!customer || customer.status !== 'Active') {
         throw { statusCode: 400, name: 'BAD_REQUEST', message: 'Active customer is required' };
@@ -109,7 +109,7 @@ export class OrdersService {
           };
         }
 
-        // Validate stock
+        
         if (product.stock < item.quantity) {
           throw {
             statusCode: 400,
@@ -129,12 +129,12 @@ export class OrdersService {
         });
       }
 
-      // Calculations
-      const taxRate = 0.1; // 10%
+      
+      const taxRate = 0.1; 
       const tax = Math.round(subtotal * taxRate * 100) / 100;
       const total = Math.max(0, subtotal + tax - discount);
 
-      // Generate order number
+      
       const count = await SalesOrder.countDocuments().session(session);
       const orderNumber = `SO-${1001 + count}`;
 
@@ -193,14 +193,14 @@ export class OrdersService {
         return order;
       }
 
-      // State machine validation rules
+      
       const allowedTransitions: Record<string, string[]> = {
         Pending: ['Confirmed', 'Cancelled'],
         Confirmed: ['Processing', 'Cancelled'],
         Processing: ['Shipped', 'Cancelled'],
         Shipped: ['Delivered', 'Cancelled'],
-        Delivered: [], // Final state
-        Cancelled: [], // Final state
+        Delivered: [], 
+        Cancelled: [], 
       };
 
       if (!allowedTransitions[oldStatus].includes(newStatus)) {
@@ -211,8 +211,8 @@ export class OrdersService {
         };
       }
 
-      // Handle Stock updates based on transition
-      // DEDUCT stock when order is Confirmed
+      
+      
       if (newStatus === 'Confirmed') {
         for (const item of order.items) {
           const product = await Product.findById(item.product).session(session);
@@ -235,7 +235,7 @@ export class OrdersService {
         }
       }
 
-      // RESTORE stock if cancelled from a state that already deducted stock
+      
       const activeStates = ['Confirmed', 'Processing', 'Shipped'];
       if (newStatus === 'Cancelled' && activeStates.includes(oldStatus)) {
         for (const item of order.items) {

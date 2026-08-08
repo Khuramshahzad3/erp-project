@@ -69,7 +69,7 @@ export const ProductForm: React.FC = () => {
       }
       navigate('/products');
     } catch (err) {
-      // API errors handled by axios interceptor
+      
     }
   };
 
@@ -83,7 +83,7 @@ export const ProductForm: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      {/* Header */}
+      {}
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="sm" onClick={() => navigate('/products')}>
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
@@ -93,7 +93,7 @@ export const ProductForm: React.FC = () => {
         </h1>
       </div>
 
-      {/* Form Container */}
+      {}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-6"
@@ -110,7 +110,7 @@ export const ProductForm: React.FC = () => {
             label="SKU Code"
             placeholder="LAP-THINKL14"
             error={errors.sku?.message}
-            disabled={isEditMode} // Usually SKU codes shouldn't change
+            disabled={isEditMode} 
             {...register('sku')}
           />
 

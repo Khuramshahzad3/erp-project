@@ -2,9 +2,10 @@ import app from './app';
 import { env } from './config/env';
 import { connectDatabase } from './config/database';
 
-const startServer = async () => {
-  await connectDatabase();
 
+connectDatabase();
+
+if (!process.env.VERCEL) {
   const server = app.listen(env.PORT, () => {
     console.log(`🚀 Server running in production-mode on port ${env.PORT}`);
   });
@@ -22,6 +23,6 @@ const startServer = async () => {
     console.error(err);
     process.exit(1);
   });
-};
+}
 
-startServer();
+export default app;

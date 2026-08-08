@@ -75,7 +75,7 @@ export const AuditLogList: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
+      {}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-gray-900">System Audit Trail</h1>
         <p className="text-sm text-gray-500">
@@ -83,7 +83,7 @@ export const AuditLogList: React.FC = () => {
         </p>
       </div>
 
-      {/* Audit Log Table */}
+      {}
       <DataTable
         columns={columns}
         data={logRes?.data || []}

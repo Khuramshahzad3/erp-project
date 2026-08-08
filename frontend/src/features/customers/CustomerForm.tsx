@@ -54,7 +54,7 @@ export const CustomerForm: React.FC = () => {
     },
   });
 
-  // Prepopulate form on edit
+  
   useEffect(() => {
     if (isEditMode && detailRes?.data?.customer) {
       reset(detailRes.data.customer as any);
@@ -72,7 +72,7 @@ export const CustomerForm: React.FC = () => {
       }
       navigate('/customers');
     } catch (err) {
-      // API errors handled by axios interceptor toast
+      
     }
   };
 
@@ -86,7 +86,7 @@ export const CustomerForm: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      {/* Header */}
+      {}
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="sm" onClick={() => navigate('/customers')}>
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
@@ -96,7 +96,7 @@ export const CustomerForm: React.FC = () => {
         </h1>
       </div>
 
-      {/* Form Container */}
+      {}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-6"

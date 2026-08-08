@@ -44,7 +44,7 @@ export class CustomersService {
       .limit(limit)
       .lean();
 
-    // Enrich customers with aggregate orders count
+    
     const enrichedCustomers = await Promise.all(
       customers.map(async (customer) => {
         const orderCount = await SalesOrder.countDocuments({ customer: customer._id });
@@ -72,7 +72,7 @@ export class CustomersService {
       throw { statusCode: 404, name: 'NOT_FOUND', message: 'Customer not found' };
     }
 
-    // Get order summary statistics for details page
+    
     const orders = await SalesOrder.find({ customer: id }).sort({ createdAt: -1 }).lean();
     const totalOrders = orders.length;
     const totalSpent = orders.reduce((acc, order) => {
@@ -97,7 +97,7 @@ export class CustomersService {
   }
 
   static async createCustomer(data: any, userId: string) {
-    // Check if email already exists
+    
     const existing = await Customer.findOne({ email: data.email });
     if (existing) {
       throw { statusCode: 409, name: 'CONFLICT', message: 'Customer email already exists' };
@@ -150,7 +150,7 @@ export class CustomersService {
       throw { statusCode: 404, name: 'NOT_FOUND', message: 'Customer not found' };
     }
 
-    // Check if customer has orders
+    
     const ordersCount = await SalesOrder.countDocuments({ customer: id });
     if (ordersCount > 0) {
       throw { statusCode: 400, name: 'BAD_REQUEST', message: 'Cannot delete customer with existing orders' };

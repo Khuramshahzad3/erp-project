@@ -16,7 +16,7 @@ export const CustomerList: React.FC = () => {
   const navigate = useNavigate();
   const { hasRole } = useAuth();
 
-  // Search, Sort and Pagination states
+  
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [page, setPage] = useState(1);
@@ -24,7 +24,7 @@ export const CustomerList: React.FC = () => {
   const [sortBy, setSortBy] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
-  // Deletion Confirm Dialog state
+  
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleteName, setDeleteName] = useState('');
 
@@ -56,12 +56,12 @@ export const CustomerList: React.FC = () => {
       triggerToast('Customer deleted successfully!');
       setDeleteId(null);
     } catch (err: any) {
-      // Error is already alerted by Axios interceptor, but we still close modal
+      
       setDeleteId(null);
     }
   };
 
-  // CSV Export handler
+  
   const handleExportCSV = () => {
     if (!customerRes?.data) return;
     const headers = ['Name', 'Email', 'Phone', 'Company', 'Address', 'City', 'Country', 'Status', 'Notes'];
@@ -91,7 +91,7 @@ export const CustomerList: React.FC = () => {
     triggerToast('CSV export started!');
   };
 
-  // Table Columns config
+  
   const columns: Column<Customer>[] = [
     {
       header: 'Customer Name',
@@ -172,7 +172,7 @@ export const CustomerList: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
+      {}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-gray-900">Customers Database</h1>
@@ -188,7 +188,7 @@ export const CustomerList: React.FC = () => {
         </div>
       </div>
 
-      {/* Filters & Search Control */}
+      {}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
         <div className="relative col-span-2">
           <Input
@@ -218,7 +218,7 @@ export const CustomerList: React.FC = () => {
         </div>
       </div>
 
-      {/* Data Table */}
+      {}
       <DataTable
         columns={columns}
         data={customerRes?.data || []}
@@ -235,7 +235,7 @@ export const CustomerList: React.FC = () => {
         }}
       />
 
-      {/* Delete Confirmation */}
+      {}
       <ConfirmDialog
         isOpen={!!deleteId}
         onClose={() => setDeleteId(null)}

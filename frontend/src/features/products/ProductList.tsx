@@ -185,7 +185,7 @@ export const ProductList: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
+      {}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-gray-900">Products & Inventory</h1>
@@ -203,7 +203,7 @@ export const ProductList: React.FC = () => {
         </div>
       </div>
 
-      {/* Filters */}
+      {}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-4 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
         <div className="relative col-span-2">
           <Input
@@ -254,7 +254,7 @@ export const ProductList: React.FC = () => {
         </div>
       </div>
 
-      {/* DataTable */}
+      {}
       <DataTable
         columns={columns}
         data={productRes?.data || []}
@@ -271,7 +271,7 @@ export const ProductList: React.FC = () => {
         }}
       />
 
-      {/* Delete Confirmation */}
+      {}
       <ConfirmDialog
         isOpen={!!deleteId}
         onClose={() => setDeleteId(null)}

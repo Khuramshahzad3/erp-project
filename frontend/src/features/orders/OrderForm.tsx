@@ -18,7 +18,7 @@ interface SelectedItem {
 export const OrderForm: React.FC = () => {
   const navigate = useNavigate();
   
-  // Mutations & Query Loads
+  
   const createMutation = useCreateOrder();
   const { data: customerRes } = useCustomers({ limit: 100, status: 'Active' });
   const { data: productRes } = useProducts({ limit: 100, status: 'Active' });
@@ -26,20 +26,20 @@ export const OrderForm: React.FC = () => {
   const activeCustomers = customerRes?.data || [];
   const activeProducts = productRes?.data || [];
 
-  // Form states
+  
   const [selectedCustomerId, setSelectedCustomerId] = useState('');
   const [items, setItems] = useState<SelectedItem[]>([]);
   const [discount, setDiscount] = useState<number>(0);
   const [notes, setNotes] = useState('');
 
-  // Add Item Temp state
+  
   const [tempProductId, setTempProductId] = useState('');
   const [tempQuantity, setTempQuantity] = useState<number>(1);
   const [stockError, setStockError] = useState<string | null>(null);
 
-  // Totals calculations
+  
   const subtotal = items.reduce((acc, item) => acc + item.quantity * item.product.price, 0);
-  const taxRate = 0.1; // 10%
+  const taxRate = 0.1; 
   const tax = Math.round(subtotal * taxRate * 100) / 100;
   const total = Math.max(0, subtotal + tax - discount);
 
@@ -57,12 +57,12 @@ export const OrderForm: React.FC = () => {
     const product = activeProducts.find((p) => p._id === tempProductId);
     if (!product) return;
 
-    // Check if product is already in items list
+    
     const existingIndex = items.findIndex((i) => i.product._id === tempProductId);
     const existingQty = existingIndex !== -1 ? items[existingIndex].quantity : 0;
     const newQty = existingQty + tempQuantity;
 
-    // Validate stock locally
+    
     if (product.stock < newQty) {
       setStockError(
         `Insufficient stock for ${product.name}. Available: ${product.stock}, Requested: ${newQty}`
@@ -78,7 +78,7 @@ export const OrderForm: React.FC = () => {
       setItems([...items, { product, quantity: tempQuantity }]);
     }
 
-    // Reset item input states
+    
     setTempProductId('');
     setTempQuantity(1);
     setStockError(null);
@@ -135,13 +135,13 @@ export const OrderForm: React.FC = () => {
       triggerToast('Sales Order created successfully!');
       navigate('/orders');
     } catch (err) {
-      // API errors handled by axios interceptor
+      
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Header */}
+      {}
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="sm" onClick={() => navigate('/orders')}>
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
@@ -150,9 +150,9 @@ export const OrderForm: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmitOrder} className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Left Side: Customer & Product Adding */}
+        {}
         <div className="lg:col-span-2 space-y-6">
-          {/* Customer Selection Card */}
+          {}
           <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-4">
             <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">
               1. Customer Selection
@@ -172,7 +172,7 @@ export const OrderForm: React.FC = () => {
             />
           </div>
 
-          {/* Add Products Card */}
+          {}
           <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-4">
             <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">
               2. Add Products
@@ -222,7 +222,7 @@ export const OrderForm: React.FC = () => {
               </div>
             </div>
 
-            {/* Added Items List */}
+            {}
             <div className="border-t border-gray-100 pt-6">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
                 Items in Order
@@ -274,7 +274,7 @@ export const OrderForm: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Side: Totals Summary & Submit */}
+        {}
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-6">
             <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">

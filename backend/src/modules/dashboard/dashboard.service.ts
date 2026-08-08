@@ -8,7 +8,7 @@ export class DashboardService {
     const totalProducts = await Product.countDocuments({});
     const totalOrders = await SalesOrder.countDocuments({});
 
-    // Calculate Total Revenue
+    
     const revenueAggregation = await SalesOrder.aggregate([
       { $match: { status: { $ne: 'Cancelled' } } },
       { $group: { _id: null, totalRevenue: { $sum: '$total' } } },
@@ -17,7 +17,7 @@ export class DashboardService {
 
     const pendingOrders = await SalesOrder.countDocuments({ status: 'Pending' });
 
-    // Low stock count: stock <= lowStockThreshold
+    
     const lowStockProducts = await Product.countDocuments({
       $expr: { $lte: ['$stock', '$lowStockThreshold'] },
       status: 'Active',
@@ -34,7 +34,7 @@ export class DashboardService {
   }
 
   static async getSalesOverview() {
-    // Return sales over time (last 30 days grouped by date)
+    
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
@@ -67,7 +67,7 @@ export class DashboardService {
   }
 
   static async getTopProducts() {
-    // Best-selling products (grouped by product ID and sum of quantity)
+    
     const topProducts = await SalesOrder.aggregate([
       { $match: { status: { $ne: 'Cancelled' } } },
       { $unwind: '$items' },

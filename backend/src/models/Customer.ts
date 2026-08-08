@@ -23,7 +23,7 @@ const customerSchema = new Schema<ICustomer>(
   }
 );
 
-// Compound indexes for search optimization
+
 customerSchema.index({ name: 'text', company: 'text', email: 'text' });
 
 export const Customer = model<ICustomer>('Customer', customerSchema);

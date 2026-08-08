@@ -19,8 +19,8 @@ export class AuthController {
 
   static logout = async (_req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
     try {
-      // In a pure stateless JWT setup, logout is handled by client destroying the token.
-      // But we can log the action if desired.
+      
+      
       res.status(200).json({
         success: true,
         message: 'Logged out successfully',

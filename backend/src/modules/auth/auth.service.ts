@@ -30,7 +30,7 @@ export class AuthService {
       { expiresIn: env.JWT_EXPIRES_IN as any }
     );
 
-    // Log the successful authentication action
+    
     await AuditLog.create({
       user: user._id,
       action: 'User Login',

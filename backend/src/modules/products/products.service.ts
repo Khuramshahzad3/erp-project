@@ -69,7 +69,7 @@ export class ProductsService {
   }
 
   static async createProduct(data: any, userId: string) {
-    // Check SKU uniqueness
+    
     const existing = await Product.findOne({ sku: data.sku });
     if (existing) {
       throw { statusCode: 409, name: 'CONFLICT', message: `Product SKU '${data.sku}' already exists` };
@@ -122,7 +122,7 @@ export class ProductsService {
       throw { statusCode: 404, name: 'NOT_FOUND', message: 'Product not found' };
     }
 
-    // Check if used in orders
+    
     const ordersCount = await SalesOrder.countDocuments({ 'items.product': id });
     if (ordersCount > 0) {
       throw { statusCode: 400, name: 'BAD_REQUEST', message: 'Cannot delete product referenced in existing orders' };

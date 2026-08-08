@@ -7,7 +7,7 @@ import { authorize } from '../../middleware/role.middleware';
 
 const router = Router();
 
-// Apply authentication to all customer routes
+
 router.use(authenticate);
 
 router.get('/', CustomersController.getCustomers);

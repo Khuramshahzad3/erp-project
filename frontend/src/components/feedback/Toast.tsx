@@ -8,7 +8,7 @@ export interface ToastMessage {
   type: 'success' | 'error' | 'info' | 'warning';
 }
 
-// Global emitter helper for triggering toast messages programmatically
+
 type ToastListener = (message: string, type: ToastMessage['type']) => void;
 const toastListeners = new Set<ToastListener>();
 
@@ -23,7 +23,7 @@ export const ToastContainer: React.FC = () => {
     const id = Math.random().toString(36).substring(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
 
-    // Auto-remove after 5 seconds
+    
     setTimeout(() => {
       removeToast(id);
     }, 5000);
@@ -34,13 +34,13 @@ export const ToastContainer: React.FC = () => {
   };
 
   useEffect(() => {
-    // Subscribe to manual toast triggers
+    
     const handleTrigger: ToastListener = (message, type) => {
       addToast(message, type);
     };
     toastListeners.add(handleTrigger);
 
-    // Subscribe to Axios response interceptor errors
+    
     const unsubscribeApi = subscribeToApiErrors((message) => {
       addToast(message, 'error');
     });

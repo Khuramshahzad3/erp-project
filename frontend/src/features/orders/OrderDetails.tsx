@@ -38,13 +38,13 @@ export const OrderDetails: React.FC = () => {
       await statusMutation.mutateAsync(newStatus);
       triggerToast(`Order status updated to ${newStatus}!`);
     } catch (err) {
-      // API errors handled by axios interceptor
+      
     } finally {
       setTargetedStatus(null);
     }
   };
 
-  // PDF / Print Invoice Generator
+  
   const handlePrintInvoice = () => {
     if (!order) return;
 
@@ -242,7 +242,7 @@ export const OrderDetails: React.FC = () => {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
-      {/* Top Controls */}
+      {}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="sm" onClick={() => navigate('/orders')}>
@@ -268,7 +268,7 @@ export const OrderDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* Status Timeline */}
+      {}
       <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-4">
         <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
           <Clock className="h-4 w-4 text-gray-400" /> Order Fulfillment Status
@@ -296,7 +296,7 @@ export const OrderDetails: React.FC = () => {
           </div>
         )}
 
-        {/* Status Transition buttons (All roles authorized) */}
+        {}
         {hasRole(['Admin', 'Sales Manager', 'Sales Representative']) && order.status !== 'Cancelled' && order.status !== 'Delivered' && (
           <div className="border-t border-gray-100 pt-4 flex flex-wrap gap-2.5 items-center">
             <span className="text-xs text-gray-500 font-medium">Update Status:</span>
@@ -333,9 +333,9 @@ export const OrderDetails: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {/* Left Columns: Customer details & Items */}
+        {}
         <div className="md:col-span-2 space-y-6">
-          {/* Items Table Card */}
+          {}
           <div className="bg-white rounded-xl border border-gray-150 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/10">
               <h3 className="font-bold text-gray-800 text-sm uppercase tracking-wide flex items-center gap-2">
@@ -387,9 +387,9 @@ export const OrderDetails: React.FC = () => {
           )}
         </div>
 
-        {/* Right Column: Customer info & Totals */}
+        {}
         <div className="space-y-6">
-          {/* Customer info card */}
+          {}
           <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-4">
             <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
               <Building className="h-4.5 w-4.5 text-gray-400" /> Customer Information
@@ -419,7 +419,7 @@ export const OrderDetails: React.FC = () => {
             )}
           </div>
 
-          {/* Totals card */}
+          {}
           <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-4">
             <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider">
               Payment Summary
@@ -446,7 +446,7 @@ export const OrderDetails: React.FC = () => {
             </div>
           </div>
 
-          {/* Meta card */}
+          {}
           <div className="bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-3 text-xs text-gray-400">
             <div className="flex items-center gap-1.5">
               <User className="h-3.5 w-3.5" />

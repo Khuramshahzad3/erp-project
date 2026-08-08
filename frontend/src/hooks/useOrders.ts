@@ -36,7 +36,7 @@ export const useCreateOrder = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['orders'] });
       queryClient.invalidateQueries({ queryKey: ['dashboard'] });
-      queryClient.invalidateQueries({ queryKey: ['products'] }); // Stock reduces, so invalidate products
+      queryClient.invalidateQueries({ queryKey: ['products'] }); 
     },
   });
 };
@@ -50,7 +50,7 @@ export const useUpdateOrderStatus = (id: string) => {
       queryClient.invalidateQueries({ queryKey: ['orders'] });
       queryClient.invalidateQueries({ queryKey: ['order', id] });
       queryClient.invalidateQueries({ queryKey: ['dashboard'] });
-      queryClient.invalidateQueries({ queryKey: ['products'] }); // Stock may change, so invalidate products
+      queryClient.invalidateQueries({ queryKey: ['products'] }); 
     },
   });
 };

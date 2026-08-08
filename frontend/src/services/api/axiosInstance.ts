@@ -1,6 +1,6 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 
-// Central event emitter/handler for API errors so that UI components can listen and trigger toast notifications
+
 type ErrorListener = (message: string, type: 'error' | 'warning') => void;
 const listeners = new Set<ErrorListener>();
 
@@ -25,7 +25,7 @@ export const apiClient = axios.create({
   timeout: 15000,
 });
 
-// Request Interceptor: Attach authentication token to headers
+
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('erp_token');
@@ -39,10 +39,10 @@ apiClient.interceptors.request.use(
   }
 );
 
-// Response Interceptor: Standardized Error Handling
+
 apiClient.interceptors.response.use(
   (response) => {
-    // Return the standard inner data object
+    
     return response;
   },
   (error: AxiosError<any>) => {
@@ -62,10 +62,10 @@ apiClient.interceptors.response.use(
         break;
       case 401:
         userFriendlyMessage = serverMessage || 'Session expired. Please log in again.';
-        // Clear token on token expiration/unauthorized
+        
         localStorage.removeItem('erp_token');
         localStorage.removeItem('erp_user');
-        // Redirect to login if not already there
+        
         if (!window.location.pathname.endsWith('/login')) {
           window.location.href = '/login';
         }
@@ -92,10 +92,10 @@ apiClient.interceptors.response.use(
         userFriendlyMessage = serverMessage || 'Something went wrong. Please try again.';
     }
 
-    // Trigger toast notification
+    
     notifyError(userFriendlyMessage);
 
-    // Create a normalized error object to propagate to React Query
+    
     const normalizedError = {
       status,
       code: data?.error?.code || 'API_ERROR',

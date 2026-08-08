@@ -23,12 +23,12 @@ interface DataTableProps<T> {
   loading?: boolean;
   emptyMessage?: string;
   
-  // Sorting (Optional)
+  
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
   onSort?: (key: string) => void;
 
-  // Pagination (Optional)
+  
   pagination?: PaginationMeta;
   onPageChange?: (page: number) => void;
   onLimitChange?: (limit: number) => void;
@@ -54,7 +54,7 @@ export function DataTable<T>({
 
   return (
     <div className="flex flex-col w-full bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-      {/* Table container */}
+      {}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-100 text-left text-sm">
           <thead className="bg-gray-50/75 text-gray-500 font-medium">
@@ -93,7 +93,7 @@ export function DataTable<T>({
           </thead>
           <tbody className="divide-y divide-gray-100 bg-white">
             {loading ? (
-              // Loading Skeleton
+              
               Array.from({ length: 5 }).map((_, rIdx) => (
                 <tr key={rIdx} className="animate-pulse">
                   {columns.map((_, cIdx) => (
@@ -104,7 +104,7 @@ export function DataTable<T>({
                 </tr>
               ))
             ) : data.length === 0 ? (
-              // Empty State
+              
               <tr>
                 <td colSpan={columns.length} className="px-6 py-12 text-center text-gray-400">
                   <div className="flex flex-col items-center justify-center gap-2">
@@ -113,7 +113,7 @@ export function DataTable<T>({
                 </td>
               </tr>
             ) : (
-              // Data Rows
+              
               data.map((row, rIdx) => (
                 <tr key={rIdx} className="hover:bg-gray-50/50 transition-colors">
                   {columns.map((col) => (
@@ -128,7 +128,7 @@ export function DataTable<T>({
         </table>
       </div>
 
-      {/* Pagination Controls */}
+      {}
       {pagination && onPageChange && onLimitChange && (
         <div className="flex items-center justify-between border-t border-gray-100 bg-white px-6 py-4">
           <div className="flex items-center gap-2">

@@ -29,7 +29,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      {/* Backdrop */}
+      {}
       <div
         className="fixed inset-0 bg-gray-950/50 backdrop-blur-sm transition-opacity"
         onClick={onClose}

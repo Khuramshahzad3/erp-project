@@ -36,7 +36,7 @@ export const Dashboard: React.FC = () => {
   const topProducts = topProductsRes?.data || [];
   const recentOrders = ordersRes?.data || [];
 
-  // Helper to format currency
+  
   const formatCurrency = (val: number) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
   };
@@ -82,10 +82,10 @@ export const Dashboard: React.FC = () => {
     },
   ];
 
-  // Colors for Top Products bar chart
+  
   const COLORS = ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#c084fc'];
 
-  // Status badging helper
+  
   const getStatusBadge = (status: string) => {
     const statusMap: Record<string, 'success' | 'warning' | 'info' | 'error' | 'default'> = {
       Pending: 'warning',
@@ -118,7 +118,7 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* Stats Grid */}
+      {}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {statCards.map((card, idx) => {
           const Icon = card.icon;
@@ -141,9 +141,9 @@ export const Dashboard: React.FC = () => {
         })}
       </div>
 
-      {/* Charts Grid */}
+      {}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Sales Overview Line Chart */}
+        {}
         <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">
@@ -185,7 +185,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Top Selling Products */}
+        {}
         <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
           <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide mb-6">
             Top Products (Units Sold)
@@ -224,7 +224,7 @@ export const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Recent Orders Section */}
+      {}
       <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">

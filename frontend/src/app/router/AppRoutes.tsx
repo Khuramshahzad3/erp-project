@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProvider';
 
-// Pages lazy/direct imports
+
 import Login from '../../features/auth/Login';
 import Dashboard from '../../features/dashboard/Dashboard';
 import CustomerList from '../../features/customers/CustomerList';
@@ -71,7 +71,7 @@ export const AppRoutes: React.FC = () => {
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
 
-        {/* Customer routes */}
+        {}
         <Route path="customers" element={<CustomerList />} />
         <Route
           path="customers/new"
@@ -91,7 +91,7 @@ export const AppRoutes: React.FC = () => {
           }
         />
 
-        {/* Product routes */}
+        {}
         <Route path="products" element={<ProductList />} />
         <Route
           path="products/new"
@@ -110,7 +110,7 @@ export const AppRoutes: React.FC = () => {
           }
         />
 
-        {/* Order routes */}
+        {}
         <Route path="orders" element={<OrderList />} />
         <Route
           path="orders/new"
@@ -130,7 +130,7 @@ export const AppRoutes: React.FC = () => {
           }
         />
 
-        {/* Audit Logs route (Admin only) */}
+        {}
         <Route
           path="audit-logs"
           element={
@@ -140,7 +140,7 @@ export const AppRoutes: React.FC = () => {
           }
         />
 
-        {/* Catch-all redirection */}
+        {}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Route>
     </Routes>

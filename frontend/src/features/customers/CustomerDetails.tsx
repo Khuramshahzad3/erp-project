@@ -67,7 +67,7 @@ export const CustomerDetails: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
+      {}
       <div className="flex items-center gap-3">
         <Button variant="ghost" size="sm" onClick={() => navigate('/customers')}>
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
@@ -76,7 +76,7 @@ export const CustomerDetails: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {/* Profile Card */}
+        {}
         <div className="md:col-span-1 bg-white p-6 rounded-xl border border-gray-150 shadow-sm space-y-6">
           <div className="flex flex-col items-center text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-blue-600 border border-blue-100 text-2xl font-bold mb-4">
@@ -124,9 +124,9 @@ export const CustomerDetails: React.FC = () => {
           )}
         </div>
 
-        {/* Stats and Order History */}
+        {}
         <div className="md:col-span-2 space-y-6">
-          {/* mini stats */}
+          {}
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
               <div className="flex items-center gap-3 text-blue-600">
@@ -155,7 +155,7 @@ export const CustomerDetails: React.FC = () => {
             </div>
           </div>
 
-          {/* Orders History Table */}
+          {}
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/10">
               <h3 className="font-bold text-gray-800 text-sm uppercase tracking-wide flex items-center gap-2">
