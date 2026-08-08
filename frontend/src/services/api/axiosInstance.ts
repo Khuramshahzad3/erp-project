@@ -15,7 +15,7 @@ const notifyError = (message: string, type: 'error' | 'warning' = 'error') => {
   listeners.forEach((listener) => listener(message, type));
 };
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string) || 'http://localhost:5000/api';
+const API_BASE_URL = (import.meta.env.VITE_API_URL as string);
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
