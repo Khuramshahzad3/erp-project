@@ -35,7 +35,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/', (_req, res) => {
+app.get('/', (req, res) => {
+  console.log(`📡 Root API ping received from IP: ${req.ip} at ${new Date().toISOString()}`);
   res.status(200).json({
     success: true,
     message: 'Welcome to ERP Sales & Customer Management System REST API',

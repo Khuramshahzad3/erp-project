@@ -3,6 +3,7 @@ import { env } from './config/env';
 import { connectDatabase } from './config/database';
 
 
+console.log('📡 ERP Backend initialized successfully in Serverless Mode');
 connectDatabase();
 
 if (!process.env.VERCEL) {
